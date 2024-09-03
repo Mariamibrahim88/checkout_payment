@@ -29,14 +29,13 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.8
+  dio: ^5.7.0
   flutter:
     sdk: flutter
   flutter_credit_card: ^4.0.1
   flutter_stripe: ^11.0.0
   flutter_svg: ^2.0.10+1
   font_awesome_flutter: ^10.7.0
-
- 
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -79,7 +78,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-
 dependency_overrides:
 
   stripe_android: "9.5.0+1"
