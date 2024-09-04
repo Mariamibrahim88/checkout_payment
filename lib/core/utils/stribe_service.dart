@@ -6,6 +6,9 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 
 class StribeService {
   final ApiService apiService = ApiService();
+
+  // paymentIntentObject create payment intent (amount, currency)
+
   Future<PaymentInternModel> createpaymentIntern(
       PaymentIntentInputModel paymentInternInputModel) async {
     var response = await apiService.post(
@@ -19,6 +22,8 @@ class StribeService {
     return paymentIntentModel;
   }
 
+  // initPaymentSheet (paymentIntentClientSecret)
+
   Future initPaymentSheet({required String paymentIntentClientSecret}) async {
     Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
@@ -27,5 +32,11 @@ class StribeService {
 
       merchantDisplayName: 'Mariam',
     ));
+  }
+
+  //presentPaymentSheet()
+
+  Future displayPaymentSheet() async {
+    Stripe.instance.presentPaymentSheet();
   }
 }
