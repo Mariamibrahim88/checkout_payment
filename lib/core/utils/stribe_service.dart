@@ -40,9 +40,13 @@ class StribeService {
     Stripe.instance.presentPaymentSheet();
   }
 
+  // do payment with three steps that we created before
+
   Future makePayment(
       {required PaymentIntentInputModel paymentInternInputModel}) async {
     var paymentIntentModel = await createpaymentIntern(paymentInternInputModel);
     await initPaymentSheet(
         paymentIntentClientSecret: paymentIntentModel.clientSecret!);
-    await displayPaymentSheet();}
+    await displayPaymentSheet();
+  }
+}
