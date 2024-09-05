@@ -8,7 +8,7 @@ class PaymentIntentInputModel {
 // this is used instead of send body in post request
   toJson() {
     return {
-      'amount': amount,
+      'amount': '${amount}00',
       'currency': currency,
     };
   }

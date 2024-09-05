@@ -2,6 +2,7 @@ import 'package:checkout_payment_ui/core/utils/api_keys.dart';
 import 'package:checkout_payment_ui/core/utils/api_service.dart';
 import 'package:checkout_payment_ui/features/checkout/data/models/payment_intent_input_model.dart';
 import 'package:checkout_payment_ui/features/checkout/data/models/payment_intern_model/payment_intern_model.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 class StribeService {
@@ -14,6 +15,7 @@ class StribeService {
     var response = await apiService.post(
       url: 'https://api.stripe.com/v1/payment_intents',
       body: paymentInternInputModel.toJson(),
+      contentType: Headers.formUrlEncodedContentType,
       token: ApiKeys.secretKey,
     );
 
@@ -25,7 +27,7 @@ class StribeService {
   // initPaymentSheet (paymentIntentClientSecret)
 
   Future initPaymentSheet({required String paymentIntentClientSecret}) async {
-    Stripe.instance.initPaymentSheet(
+    await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
       paymentIntentClientSecret: paymentIntentClientSecret,
       // name the owner of the card
@@ -37,7 +39,7 @@ class StribeService {
   //presentPaymentSheet()
 
   Future displayPaymentSheet() async {
-    Stripe.instance.presentPaymentSheet();
+    await Stripe.instance.presentPaymentSheet();
   }
 
   // do payment with three steps that we created before

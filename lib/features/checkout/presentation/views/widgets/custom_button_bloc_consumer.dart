@@ -16,10 +16,13 @@ class CustomButtonBlocConsumer extends StatelessWidget {
     return BlocConsumer<PaymentCubit, PaymentState>(
       listener: (context, state) {
         if (state is PaymentSuccess) {
+          showSnackBar(context, 'success', Colors.green);
+
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const ThankUView()));
         }
         if (state is PaymentFailure) {
+          Navigator.pop(context);
           showSnackBar(context, state.errMessage, Colors.red);
         }
       },
