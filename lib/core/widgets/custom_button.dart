@@ -2,10 +2,15 @@ import 'package:checkout_payment_ui/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onPressed, required this.text});
+  const CustomButton(
+      {super.key,
+      required this.onPressed,
+      required this.text,
+      this.isLoading = false});
 
   final void Function() onPressed;
   final String text;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +23,14 @@ class CustomButton extends StatelessWidget {
           color: const Color(0xFF34A853),
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Center(
-          child: Text(
-            text,
-            style: Styles.style22,
-          ),
-        ),
+        child: isLoading
+            ? const CircularProgressIndicator()
+            : Center(
+                child: Text(
+                  text,
+                  style: Styles.style22,
+                ),
+              ),
       ),
     );
   }

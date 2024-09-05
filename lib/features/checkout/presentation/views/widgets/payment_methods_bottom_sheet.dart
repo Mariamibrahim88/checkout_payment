@@ -25,22 +25,22 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
+    return const Padding(
+      padding: EdgeInsets.all(16),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(
+          SizedBox(
             height: 16,
           ),
-          const PaymentMethodsListView(
+          PaymentMethodsListView(
 
               // updatePaymentMethod: updatePaymentMethod,
               ),
-          const SizedBox(
+          SizedBox(
             height: 32,
           ),
-          CustomButton(onPressed: () {}, text: 'Continue'),
+          CustomButtonBlocConsumer(),
 
           // CustomButtonBlocConsumer(
           //   isPaypal: isPaypal,
@@ -48,5 +48,16 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
         ],
       ),
     );
+  }
+}
+
+class CustomButtonBlocConsumer extends StatelessWidget {
+  const CustomButtonBlocConsumer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomButton(onPressed: () {}, text: 'Continue');
   }
 }
