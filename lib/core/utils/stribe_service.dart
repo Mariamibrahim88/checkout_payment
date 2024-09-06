@@ -1,5 +1,6 @@
 import 'package:checkout_payment_ui/core/utils/api_keys.dart';
 import 'package:checkout_payment_ui/core/utils/api_service.dart';
+import 'package:checkout_payment_ui/features/checkout/data/models/epheremal_key_model/ephemeral_key/ephemeral_key.dart';
 import 'package:checkout_payment_ui/features/checkout/data/models/payment_intent_input_model.dart';
 import 'package:checkout_payment_ui/features/checkout/data/models/payment_intern_model/payment_intern_model.dart';
 import 'package:dio/dio.dart';
@@ -50,5 +51,24 @@ class StribeService {
     await initPaymentSheet(
         paymentIntentClientSecret: paymentIntentModel.clientSecret!);
     await displayPaymentSheet();
+  }
+
+  Future<EphemeralKey> createEphemeralKey({required String customerId}) async {
+    var response = await apiService.post(
+      url: 'https://api.stripe.com/v1/payment_intents',
+      body: {
+        'customer': customerId,
+      },
+      contentType: Headers.formUrlEncodedContentType,
+      token: ApiKeys.secretKey,
+      headers: {
+        'Authorization': 'Bearer ${ApiKeys.secretKey},',
+        'Stripe-Version': '2024-06-20',
+      },
+    );
+
+    var ephemeralKeyResult = EphemeralKey.fromJson(response.data);
+
+    return ephemeralKeyResult;
   }
 }

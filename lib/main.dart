@@ -19,3 +19,11 @@ class CheckoutApp extends StatelessWidget {
     );
   }
 }
+
+//to save card info
+//1. create payment intent(currency, amount,customer id)
+//create Emphemeralkey(stripeVersion, customer id)
+//2.initiate payment intent(merchantDisplayName,initClientSecret,emphemeralKeySecret)
+
+//3.present payment sheet
+//
