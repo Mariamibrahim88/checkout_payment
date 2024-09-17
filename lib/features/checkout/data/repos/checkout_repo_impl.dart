@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:checkout_payment_ui/core/utils/errors/failures.dart';
 import 'package:checkout_payment_ui/core/utils/stribe_service.dart';
 import 'package:checkout_payment_ui/features/checkout/data/models/payment_intent_input_model.dart';
@@ -16,6 +18,8 @@ class CheckoutRepoImpl implements ChechoutRepo {
 
       return right(null);
     } catch (e) {
+      log(e.toString());
+
       return left(ServerFailure(e.toString()));
     }
   }
